@@ -86,7 +86,7 @@ tok_table = st.checkbox("斷詞特徵", False)
 if analyzed_text:
     st.markdown("## 分析後文本") 
     for idx, sent in enumerate(doc.sents):
-        tokens_text = [tok.text for tok in sent if tok.pos_ not in punct_and_sym]
+        tokens_text = [tok.text for tok in sent if tok.pos_ not in PUNCT_SYM]
         pinyins = [hanzi.to_pinyin(word) for word in tokens_text]
         display = []
         for text, pinyin in zip(tokens_text, pinyins):
