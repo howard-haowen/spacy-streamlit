@@ -1,22 +1,8 @@
-# ja_ginza is a Japanese model with a lemmatizer and a morphologizer more fine-grained than the default one in spaCy
-ginza 
-ja_ginza
-# ja_ginza depends on spacy>=3.2.0,<3.3.0
 spacy>=3.2.0,<3.3.0
 spacy-streamlit>=1.0.0rc1,<1.1.0
-spacy-wordnet
-# spacy-wordnet depends on nltk
-nltk
 
 # sapCy models
 https://github.com/explosion/spacy-models/releases/download/zh_core_web_sm-3.2.0/zh_core_web_sm-3.2.0.tar.gz#egg=zh_core_web_sm
-https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.2.0/en_core_web_sm-3.2.0.tar.gz#egg=en_core_web_sm
 
 # conversion between hanzi and transcriptions 
 dragonmapper
-
-# an online Japanese dictionary
-jisho_api
-
-# YAKE keyword extraction 
-spacy-ke
