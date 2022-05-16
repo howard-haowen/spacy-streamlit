@@ -13,6 +13,7 @@ import streamlit as st
 ZH_TEXT = """（中央社）迎接虎年到來，台北101今天表示，即日起推出「虎年新春燈光秀」，將持續至2月5日，每晚6時至10時，除整點會有報時燈光變化外，每15分鐘還會有3分鐘的燈光秀。台北101下午透過新聞稿表示，今年特別設計「虎年新春燈光秀」，從今晚開始閃耀台北天際線，一直延續至2月5日，共7天。"""
 DESCRIPTION = "AI模型輔助語言學習"
 TOK_SEP = " | "
+PUNCT_SYM = ["PUNCT", "SYM"]
 
 # External API callers
 def moedict_caller(word):
@@ -38,7 +39,7 @@ class JiebaTokenizer:
     
 # Utility functions
 def filter_tokens(doc):
-    clean_tokens = [tok for tok in doc if tok.pos_ not in ["PUNCT", "SYM"]]
+    clean_tokens = [tok for tok in doc if tok.pos_ not in PUNCT_SYM]
     clean_tokens = [tok for tok in clean_tokens if not tok.like_email]
     clean_tokens = [tok for tok in clean_tokens if not tok.like_url]
     # clean_tokens = [tok for tok in clean_tokens if not tok.like_num]
@@ -55,7 +56,6 @@ st.set_page_config(
 
 # Choose a language and select functions
 st.markdown(f"# {DESCRIPTION}") 
-st.sidebar.write("請至少勾選一個功能")
 
 # Load the model
 nlp = spacy.load('zh_core_web_sm')
@@ -68,7 +68,6 @@ selected_tokenizer = st.radio("請選擇斷詞模型", ["jieba-TW", "spaCy"])
 if selected_tokenizer == "jieba-TW":
     nlp.tokenizer = JiebaTokenizer(nlp.vocab)
 default_text = ZH_TEXT
-default_regex = ZH_REGEX
 
 st.markdown("## 待分析文本")     
 st.info("請在下面的文字框輸入文本並按下Ctrl + Enter以更新分析結果")
@@ -77,13 +76,12 @@ doc = nlp(text)
 st.markdown("---")
 
 # Language-specific logic 
-punct_and_sym = ["PUNCT", "SYM"]
 # keywords_extraction = st.sidebar.checkbox("關鍵詞分析", False) # YAKE doesn't work for Chinese texts
-analyzed_text = st.sidebar.checkbox("分析後文本", True)
-defs_examples = st.sidebar.checkbox("單詞解釋與例句", True)
+analyzed_text = st.checkbox("分析後文本", True)
+defs_examples = st.checkbox("單詞解釋與例句", True)
 # morphology = st.sidebar.checkbox("詞形變化", True)
-ner_viz = st.sidebar.checkbox("命名實體", True)
-tok_table = st.sidebar.checkbox("斷詞特徵", False)
+ner_viz = st.checkbox("命名實體", True)
+tok_table = st.checkbox("斷詞特徵", False)
 
 if analyzed_text:
     st.markdown("## 分析後文本") 
