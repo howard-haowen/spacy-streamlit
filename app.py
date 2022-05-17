@@ -341,7 +341,7 @@ if defs_examples:
     vocab = list(set(clean_tokens_text))
     if vocab:
         tocfl_table = load_tocfl_table()
-        filt = table['詞彙'].isin(vocab)
+        filt = tocfl_table['詞彙'].isin(vocab)
         tocfl_res = tocfl_table[filt]
         st.markdown("### 華語詞彙分級")
         st.dataframe(tocfl_res)
