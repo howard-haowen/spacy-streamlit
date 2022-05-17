@@ -1,3 +1,4 @@
+from collections import Counter
 from dragonmapper import hanzi, transcriptions
 import jieba
 import pandas as pd
@@ -57,12 +58,26 @@ class JiebaTokenizer:
 # Utility functions
 def filter_tokens(doc):
     clean_tokens = [tok for tok in doc if tok.pos_ not in PUNCT_SYM]
-    clean_tokens = [tok for tok in clean_tokens if not tok.like_email]
-    clean_tokens = [tok for tok in clean_tokens if not tok.like_url]
-    # clean_tokens = [tok for tok in clean_tokens if not tok.like_num]
-    clean_tokens = [tok for tok in clean_tokens if not tok.is_punct]
-    clean_tokens = [tok for tok in clean_tokens if not tok.is_space]
+    clean_tokens = (
+        [tok for tok in clean_tokens if 
+         not tok.like_email and 
+         not tok.like_num and 
+         not tok.like_url and 
+         not tok.is_space]
+    )
     return clean_tokens
+
+def get_vocab(doc):
+    clean_tokens = filter_tokens(doc)
+    alphanum_pattern = re.compile(r"[a-zA-Z0-9]")
+    clean_tokens_text = [tok.text for tok in clean_tokens if not alphanum_pattern.search(tok.text)]
+    vocab = list(set(clean_tokens_text))
+    return vocab
+
+def count_tokens(doc):
+    clean_tokens = filter_tokens(doc)
+    counter = Counter(clean_tokens)
+    return counter
 
 @st.cache
 def load_tocfl_table(filename="./tocfl_wordlist.csv"):
@@ -104,6 +119,7 @@ st.info("請勾選以下至少一項功能")
 analyzed_text = st.checkbox("增強文本", True)
 defs_examples = st.checkbox("單詞解析", True)
 # morphology = st.sidebar.checkbox("詞形變化", True)
+freq_count = st.checkbox("詞頻統計", True)
 ner_viz = st.checkbox("命名實體", True)
 tok_table = st.checkbox("斷詞特徵", False)
 
@@ -133,10 +149,7 @@ if analyzed_text:
 
 if defs_examples:
     st.markdown("## 單詞解析")
-    clean_tokens = filter_tokens(doc)
-    alphanum_pattern = re.compile(r"[a-zA-Z0-9]")
-    clean_tokens_text = [tok.text for tok in clean_tokens if not alphanum_pattern.search(tok.text)]
-    vocab = list(set(clean_tokens_text))
+    vocab = get_vocab(doc)
     if vocab:
         tocfl_table = load_tocfl_table()
         filt = tocfl_table['詞彙'].isin(vocab)
@@ -146,9 +159,16 @@ if defs_examples:
             st.table(tocfl_res)
         st.markdown("---")
         st.markdown("### 單詞解釋與例句")
-        selected_words = st.multiselect("請選擇要查詢的單詞: ", vocab, vocab[0:3])
+        selected_words = st.multiselect("請選擇要查詢的單詞: ", vocab, vocab[-1])
         for w in selected_words:
             moedict_caller(w)                        
+
+if freq_count:  
+    st.markdown("## 詞頻統計")  
+    counter = count_tokens(doc)
+    topK = st.slider('請選擇前K個高頻詞', 1, len(counter), 5)
+    most_common = counter.most_common(topK)
+    st.write(most_common)
 
 if ner_viz:
     ner_labels = nlp.get_pipe("ner").labels
