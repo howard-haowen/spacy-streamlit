@@ -15,9 +15,6 @@ DESCRIPTION = "AI模型輔助語言學習"
 TOK_SEP = " | "
 PUNCT_SYM = ["PUNCT", "SYM"]
 
-# Dataframe setting
-pd.set_option('display.max_colwidth', -1) 
-
 # External API callers
 def moedict_caller(word):
     st.write(f"### {word}")
@@ -116,7 +113,7 @@ if defs_examples:
         filt = tocfl_table['詞彙'].isin(vocab)
         tocfl_res = tocfl_table[filt]
         st.markdown("### 華語詞彙分級")
-        st.dataframe(tocfl_res)
+        st.table(tocfl_res)
         st.markdown("---")
         st.markdown("### 單詞解釋與例句")
         selected_words = st.multiselect("請選擇要查詢的單詞: ", vocab, vocab[0:3])
