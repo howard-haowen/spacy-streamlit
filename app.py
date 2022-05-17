@@ -357,27 +357,3 @@ if ner_viz:
     
 if tok_table:
     visualize_tokens(doc, attrs=["text", "pos_", "tag_", "dep_", "head"], title="斷詞特徵")
-
-        st.markdown("### 單詞解釋與例句")
-        selected_words = st.multiselect("請選擇要查詢的單詞: ", vocab, vocab[0:3])
-        for w in selected_words:
-            moedict_caller(w)                        
-
-if ner_viz:
-    ner_labels = nlp.get_pipe("ner").labels
-    visualize_ner(doc, labels=ner_labels, show_table=False, title="命名實體")
-    
-if tok_table:
-    visualize_tokens(doc, attrs=["text", "pos_", "tag_", "dep_", "head"], title="斷詞特徵")
-
-        st.markdown("### 單詞解釋與例句")
-        selected_words = st.multiselect("請選擇要查詢的單詞: ", vocab, vocab[0:3])
-        for w in selected_words:
-            moedict_caller(w)                        
-
-if ner_viz:
-    ner_labels = nlp.get_pipe("ner").labels
-    visualize_ner(doc, labels=ner_labels, show_table=False, title="命名實體")
-    
-if tok_table:
-    visualize_tokens(doc, attrs=["text", "pos_", "tag_", "dep_", "head"], title="斷詞特徵")
