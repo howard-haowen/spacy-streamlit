@@ -18,10 +18,15 @@ PUNCT_SYM = ["PUNCT", "SYM"]
 # External API callers
 def moedict_caller(word):
     st.write(f"### {word}")
-    req = requests.get(f"https://www.moedict.tw/a/{word}.json")
+    req = requests.get(f"https://www.moedict.tw/uni/{word}.json")
     if req:
-        with st.expander("點擊 + 檢視結果"):
-            st.json(req.json())
+        definitions = req.json().get('heteronyms')[0].get('definitions')
+        df = pd.DataFrame(definitions)
+        df.fillna("---", inplace=True)
+        cols = ['def', 'example', 'synonyms', 'antonyms']
+        df = df[cols]
+        with st.expander("點擊 + 查看結果"):
+            st.table(df)
     else:
         st.write("查無結果")
             
@@ -115,7 +120,8 @@ if defs_examples:
         filt = tocfl_table['詞彙'].isin(vocab)
         tocfl_res = tocfl_table[filt]
         st.markdown("### 華語詞彙分級")
-        st.table(tocfl_res)
+        with st.expander("點擊 + 查看結果"):
+            st.table(tocfl_res)
         st.markdown("---")
         st.markdown("### 單詞解釋與例句")
         selected_words = st.multiselect("請選擇要查詢的單詞: ", vocab, vocab[0:3])
