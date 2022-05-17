@@ -23,6 +23,12 @@ def moedict_caller(word):
         definitions = req.json().get('heteronyms')[0].get('definitions')
         df = pd.DataFrame(definitions)
         df.fillna("---", inplace=True)
+        if 'example' not in df.columns:
+            df['example'] = '---'
+        if 'synonyms' not in df.columns:
+            df['synonyms'] = '---' 
+        if 'antonyms' not in df.columns:
+            df['antonyms'] = '---' 
         cols = ['def', 'example', 'synonyms', 'antonyms']
         df = df[cols]
         with st.expander("點擊 + 查看結果"):
