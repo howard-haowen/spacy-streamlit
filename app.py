@@ -50,6 +50,8 @@ def filter_tokens(doc):
 @st.cache
 def load_tocfl_table(filename="./tocfl_wordlist.csv"):
     table = pd.read_csv(filename)
+    cols = "詞彙 漢語拼音 注音 任務領域 詞條分級".split()
+    table = table[cols]
     return table
        
 # Page setting
