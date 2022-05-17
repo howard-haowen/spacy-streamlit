@@ -100,6 +100,7 @@ doc = nlp(text)
 st.markdown("---")
 
 # keywords_extraction = st.sidebar.checkbox("關鍵詞分析", False) # YAKE doesn't work for Chinese texts
+st.info("請勾選以下至少一項功能")
 analyzed_text = st.checkbox("增強文本", True)
 defs_examples = st.checkbox("單詞解析", True)
 # morphology = st.sidebar.checkbox("詞形變化", True)
@@ -108,12 +109,21 @@ tok_table = st.checkbox("斷詞特徵", False)
 
 if analyzed_text:
     st.markdown("## 增強文本") 
+    pronunciation = st.radio("請選擇輔助發音類型", ["漢語拼音", "注音符號", "國際音標"])
     for idx, sent in enumerate(doc.sents):
         tokens_text = [tok.text for tok in sent if tok.pos_ not in PUNCT_SYM]
         pinyins = [hanzi.to_pinyin(word) for word in tokens_text]
+        sounds = pinyins
+        if pronunciation == "注音符號":
+            zhuyins = [transcriptions.pinyin_to_zhuyin(word) for word in pinyins]
+            sounds = zhuyins
+        elif pronunciation == "國際音標":
+            ipas = [transcriptions.pinyin_to_ipa(word) for word in pinyins]
+            sounds = ipas
+
         display = []
-        for text, pinyin in zip(tokens_text, pinyins):
-            res = f"{text} [{pinyin}]"
+        for text, sound in zip(tokens_text, sounds):
+            res = f"{text} [{sound}]"
             display.append(res)
         if display:
             display_text = TOK_SEP.join(display)
