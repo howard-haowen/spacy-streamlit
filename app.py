@@ -76,7 +76,8 @@ def get_vocab(doc):
 
 def count_tokens(doc):
     clean_tokens = filter_tokens(doc)
-    counter = Counter(clean_tokens)
+    tokens = [token.text for token in clean_tokens]
+    counter = Counter(tokens)
     return counter
 
 @st.cache
