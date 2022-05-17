@@ -15,6 +15,9 @@ DESCRIPTION = "AI模型輔助語言學習"
 TOK_SEP = " | "
 PUNCT_SYM = ["PUNCT", "SYM"]
 
+# Dataframe setting
+pd.set_option('display.max_colwidth', -1) 
+
 # External API callers
 def moedict_caller(word):
     st.write(f"### {word}")
