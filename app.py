@@ -19,7 +19,7 @@ PUNCT_SYM = ["PUNCT", "SYM"]
 def moedict_caller(word):
     st.write(f"### {word}")
     req = requests.get(f"https://www.moedict.tw/uni/{word}.json")
-    if req:
+    try:
         definitions = req.json().get('heteronyms')[0].get('definitions')
         df = pd.DataFrame(definitions)
         df.fillna("---", inplace=True)
@@ -27,7 +27,7 @@ def moedict_caller(word):
         df = df[cols]
         with st.expander("點擊 + 查看結果"):
             st.table(df)
-    else:
+    except:
         st.write("查無結果")
             
 # Custom tokenizer class
