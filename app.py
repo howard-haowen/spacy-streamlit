@@ -31,6 +31,12 @@ def moedict_caller(word):
             df['antonyms'] = '---' 
         cols = ['def', 'example', 'synonyms', 'antonyms']
         df = df[cols]
+        df.rename(columns={
+            'def': '解釋',
+            'example': '例句',
+            'synonyms': '同義詞',
+            'antonyms': '反義詞',
+        }, inplace=True)
         with st.expander("點擊 + 查看結果"):
             st.table(df)
     except:
