@@ -95,6 +95,14 @@ def get_freq_fig(doc):
     fig = px.bar(counter_df, x='word', y='count')
     return fig
 
+def get_level_pie(tocfl_result):
+    level = tocfl_result['詞條分級'].value_counts()
+    fig = px.pie(tocfl_result, 
+                values=level.values, 
+                names=level.index, 
+                title='詞條分級圓餅圖')
+    return fig
+
 @st.cache
 def load_tocfl_table(filename="./tocfl_wordlist.csv"):
     table = pd.read_csv(filename)
@@ -171,6 +179,9 @@ if defs_examples:
         filt = tocfl_table['詞彙'].isin(vocab)
         tocfl_res = tocfl_table[filt]
         st.markdown("### 華語詞彙分級")
+        fig = get_level_pie(tocfl_res)
+        st.plotly_chart(fig, use_container_width=True)
+
         with st.expander("點擊 + 查看結果"):
             st.table(tocfl_res)
         st.markdown("---")
@@ -181,15 +192,14 @@ if defs_examples:
 
 if freq_count:  
     st.markdown("## 詞頻統計")  
-    left, right = st.columns(2)
-    with left:
-        counter = get_counter(doc)
-        topK = st.slider('請選擇前K個高頻詞', 1, len(counter), 5)
-        most_common = counter.most_common(topK)
-        st.write(most_common)
-    with right:
-        fig = get_freq_fig(doc)
-        st.plotly_chart(fig, use_container_width=True)
+    counter = get_counter(doc)
+    topK = st.slider('請選擇前K個高頻詞', 1, len(counter), 5)
+    most_common = counter.most_common(topK)
+    st.write(most_common)
+    st.markdown("---")
+
+    fig = get_freq_fig(doc)
+    st.plotly_chart(fig, use_container_width=True)
 
 if ner_viz:
     ner_labels = nlp.get_pipe("ner").labels
