@@ -2,6 +2,7 @@ from collections import Counter
 from dragonmapper import hanzi, transcriptions
 import jieba
 import pandas as pd
+import plotly.express as px
 import re
 import requests 
 import spacy
@@ -74,11 +75,25 @@ def get_vocab(doc):
     vocab = list(set(clean_tokens_text))
     return vocab
 
-def count_tokens(doc):
+def get_counter(doc):
     clean_tokens = filter_tokens(doc)
     tokens = [token.text for token in clean_tokens]
     counter = Counter(tokens)
     return counter
+
+def get_freq_fig(doc):
+    counter = get_counter(doc)
+    counter_df = (
+        pd.DataFrame.from_dict(counter, orient='index').
+        reset_index().
+        rename(columns={
+            0: 'count', 
+            'index': 'word'
+            }).
+        sort_values(by='count', ascending=False)
+        )
+    fig = px.bar(counter_df, x='word', y='count')
+    return fig
 
 @st.cache
 def load_tocfl_table(filename="./tocfl_wordlist.csv"):
@@ -166,10 +181,15 @@ if defs_examples:
 
 if freq_count:  
     st.markdown("## 詞頻統計")  
-    counter = count_tokens(doc)
-    topK = st.slider('請選擇前K個高頻詞', 1, len(counter), 5)
-    most_common = counter.most_common(topK)
-    st.write(most_common)
+    left, right = st.columns(2)
+    with left:
+        counter = get_counter(doc)
+        topK = st.slider('請選擇前K個高頻詞', 1, len(counter), 5)
+        most_common = counter.most_common(topK)
+        st.write(most_common)
+    with right:
+        fig = get_freq_fig(doc)
+        st.plotly_chart(fig, use_container_width=True)
 
 if ner_viz:
     ner_labels = nlp.get_pipe("ner").labels
