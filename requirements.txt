@@ -1,8 +1,10 @@
 spacy>=3.3.0.dev0,<3.4.0
 spacy-streamlit>=1.0.0rc1,<1.1.0
-
 # sapCy models
 https://github.com/explosion/spacy-models/releases/download/zh_core_web_sm-3.3.0/zh_core_web_sm-3.3.0.tar.gz#egg=zh_core_web_sm
 
 # conversion between hanzi and transcriptions 
 dragonmapper
+
+# interactive plotting
+plotly
