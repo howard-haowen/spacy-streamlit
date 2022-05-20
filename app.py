@@ -100,7 +100,7 @@ def get_level_pie(tocfl_result):
     fig = px.pie(tocfl_result, 
                 values=level.values, 
                 names=level.index, 
-                title='詞條分級圓餅圖')
+                title='詞彙分級圓餅圖')
     return fig
 
 @st.cache
