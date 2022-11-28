@@ -15,7 +15,7 @@ DESCRIPTION = "AI模型輔助語言學習：法語"
 TOK_SEP = " | "
 MODEL_NAME = "fr_core_news_sm"
 REMAP_POS = {
-    "ADV":  "adverb"    ,
+    "ADV":  "adverb"   ,
     "VERB":  "verb"    ,
     "NOUN":  "noun"    ,
 }
