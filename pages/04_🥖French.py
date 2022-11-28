@@ -10,7 +10,7 @@ from spacy.tokens import Doc
 import spacy_ke
 import streamlit as st
 
-DEFAULT_TEXT = """Comment allez vous?"""
+DEFAULT_TEXT = """L'espace de Wikipédia en français est créé le 11 mai 2001. La première version connue de Wikipédia en français voit le jour le 19 mai 2001 à 1 h 05. Les trois premiers articles sont à caractère scientifique et datent du 4 août 2001. Pourtant, c'est le 23 mars 2021, que Wikipédia en français fête officiellement ses 20 ans. Elle atteint un million d'articles le 23 septembre 2010, deux millions le 8 juillet 2018 et compte 2 474 416 articles le 28 novembre 2022. Elle est en 5e position en nombre d'articles, après les éditions en anglais, en cebuano, en allemand et en suédois ; les éditions en cebuano et en suédois étant développées en partie à l'aide d'un bot."""
 DESCRIPTION = "AI模型輔助語言學習：法語"
 TOK_SEP = " | "
 MODEL_NAME = "fr_core_news_sm"
@@ -56,10 +56,10 @@ st.markdown("---")
 
 st.info("請勾選以下至少一項功能")
 keywords_extraction = st.checkbox("關鍵詞分析", False)  # F
-analyzed_text       = st.checkbox("增強文本",   False)
+analyzed_text       = st.checkbox("增強文本",   True)
 defs_examples       = st.checkbox("單詞解析",   True)  # F
 morphology          = st.checkbox("詞形變化",   False)
-ner_viz             = st.checkbox("命名實體",   False)
+ner_viz             = st.checkbox("命名實體",   True)
 tok_table           = st.checkbox("斷詞特徵",   False)  # F
 
 if keywords_extraction:
