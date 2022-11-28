@@ -25,12 +25,7 @@ from wiktionaryparser import WiktionaryParser
 PARSER = WiktionaryParser()
 PARSER.set_default_language("french")
 
-if 0: st.markdown("""
-* [ ] 關鍵詞分析
-* [ ] 增強文本
-* [ ] 單詞解析
-* [ ] 斷詞特徵
-""")
+
 
 if """Load model""":
     MAX_SYM_NUM = 5
