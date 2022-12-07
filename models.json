@@ -1,5 +1,6 @@
 {
   "zh_core_web_sm":"Chinese (zh_core_web_sm)",
   "en_core_web_sm":"English (en_core_web_sm)",
-  "ja_core_news_sm":"Japanese (ja_core_news_sm)"
+  "ja_core_news_sm":"Japanese (ja_core_news_sm)",
+  "es_core_news_sm":"Spanish (es_core_news_sm)"
 }
