@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from spacy_streamlit import visualize_ner, visualize_tokens
 
 # Global variables
-DEFAULT_TEXT = "Αυτή είναι μια πρόταση."
+DEFAULT_TEXT = """Η Ρόδος είναι ένα νησί της Ελλάδας που βρίσκεται στο νοτιοανατολικό Αιγαίο και ανήκει στα Δωδεκάνησα. Σύμφωνα με την απογραφή του 2021, ο πληθυσμός του νησιού ανέρχεται σε 124.851 κατοίκους, γεγονός που καθιστά τη Ρόδο το τρίτο πολυπληθέστερο ελληνικό νησί."""
 DESCRIPTION = "AI模型輔助語言學習：Greek"
 TOK_SEP = " | "
 MODEL_NAME = "el_core_news_sm"

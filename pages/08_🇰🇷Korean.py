@@ -10,7 +10,7 @@ import streamlit as st
 from wiktionaryparser import WiktionaryParser
 
 # Global variables
-DEFAULT_TEXT = "오늘 날씨 너무 좋다."
+DEFAULT_TEXT = """오늘 날씨 너무 좋다. 1908년 국어연구학회가 창립된 이래 여러 시련에도 불구하고 한글연구의 명맥은 꾸준히 이어졌으며, 한글날 제정, 사전편찬, 맞춤법 제정 등 많은 성과들을 일구어냈다. 광복후 '조선어학회'가 활동을 재개하였고 1949년에 '한글학회'로 개칭되면서 한글 표준화 사업등 많은 노력이 있었다. 그 결과 한글은 한국어를 표기하는 국어로서의 위상을 지키게 되었다."""
 DESCRIPTION = "AI模型輔助語言學習：韓文"
 TOK_SEP = " | "
 MODEL_NAME = "ko_core_news_sm"

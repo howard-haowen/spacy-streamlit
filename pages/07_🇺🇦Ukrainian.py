@@ -16,7 +16,7 @@ DEFAULT_TEXT = """Тож я прожив життя сам, без нікого,
 Маленький принц
 """
 
-DESCRIPTION = "AI模型輔助語言學習：Ukrainian"
+DESCRIPTION = "AI模型輔助語言學習：烏克蘭語"
 TOK_SEP = " | "
 MODEL_NAME = "uk_core_news_sm"
 API_LOOKUP = {}
