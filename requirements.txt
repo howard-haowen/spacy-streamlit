@@ -1,18 +1,30 @@
 # ja_ginza is a Japanese model with a lemmatizer and a morphologizer more fine-grained than the default one in spaCy
 ginza 
 ja_ginza
+# --- for BogiHsu
+jinja2==3.0.1
 
-# ja_ginza depends on spacy>=3.2.0,<3.3.0
-spacy>=3.2.0,<3.3.0
+# ja_ginza depends on spacy>=3.4.0,<3.3.0
+# spacy>=3.4.0,<3.3.0
+# --- for voidful & BogiHsu (prev line discarded)
+spacy==3.4.0
 spacy-streamlit>=1.0.0rc1,<1.1.0
 spacy-wordnet
+# --- for thomasschlatter
+spacy[transformers]
 
 # spacy-wordnet depends on nltk
 nltk
 
 # sapCy models
-https://github.com/explosion/spacy-models/releases/download/zh_core_web_sm-3.2.0/zh_core_web_sm-3.2.0.tar.gz#egg=zh_core_web_sm
-https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.2.0/en_core_web_sm-3.2.0.tar.gz#egg=en_core_web_sm
+https://github.com/explosion/spacy-models/releases/download/zh_core_web_sm-3.4.0/zh_core_web_sm-3.4.0.tar.gz#egg=zh_core_web_sm
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.0/en_core_web_sm-3.4.0.tar.gz#egg=en_core_web_sm
+https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-3.4.0/fr_core_news_sm-3.4.0.tar.gz#egg=fr_core_news_sm
+https://github.com/explosion/spacy-models/releases/download/el_core_news_sm-3.4.0/el_core_news_sm-3.4.0.tar.gz#egg=el_core_news_sm
+https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.4.0/es_core_news_sm-3.4.0.tar.gz#egg=es_core_news_sm
+https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-3.4.0/de_core_news_sm-3.4.0-py3-none-any.whl
+https://github.com/explosion/spacy-models/releases/download/uk_core_news_sm-3.4.0/uk_core_news_sm-3.4.0.tar.gz#egg=uk_core_news_sm
+https://github.com/explosion/spacy-models/releases/download/ko_core_news_sm-3.4.0/ko_core_news_sm-3.4.0.tar.gz#egg=ko_core_news_sm
 
 # conversion between hanzi and transcriptions 
 dragonmapper
@@ -25,3 +37,9 @@ spacy-ke
 
 # interactive plotting
 plotly
+
+# Wiktionary dictionary lookup for French & Korean
+wiktionaryparser
+
+# web parser
+beautifulsoup4
