@@ -10,6 +10,6 @@ st.markdown("""
   - Select a language from the sidebar. Currently, only Mandarin, Japanese, and English are supported.
 - 選單自動隱藏時，點選左上角 > 符號以開啟選單。
   - If the sidebar is hidden, click on the > symbol in the upper left corner to open it.
-- [點此]((https://howard-haowen.rohan.tw/))開啟作者個人首頁。
-  - Click [here]((https://howard-haowen.rohan.tw/)) to open the creator's portfolio page.
+- 點選[這裡](https://howard-haowen.rohan.tw/)開啟作者個人首頁。
+  - Click [here](https://howard-haowen.rohan.tw/) to open the creator's portfolio page.
 """)
