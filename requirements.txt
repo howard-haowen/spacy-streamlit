@@ -3,7 +3,7 @@ ginza
 ja_ginza
 
 # ja_ginza depends on spacy>=3.2.0,<3.3.0
-spacy>=3.2.0,<3.3.0
+spacy==3.4.0
 spacy-streamlit>=1.0.0rc1,<1.1.0
 spacy-wordnet
 
@@ -11,8 +11,9 @@ spacy-wordnet
 nltk
 
 # sapCy models
-https://github.com/explosion/spacy-models/releases/download/zh_core_web_sm-3.2.0/zh_core_web_sm-3.2.0.tar.gz#egg=zh_core_web_sm
-https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.2.0/en_core_web_sm-3.2.0.tar.gz#egg=en_core_web_sm
+https://github.com/explosion/spacy-models/releases/download/zh_core_web_sm-3.4.0/zh_core_web_sm-3.4.0.tar.gz#egg=zh_core_web_sm
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.0/en_core_web_sm-3.4.0.tar.gz#egg=en_core_web_sm
+https://github.com/explosion/spacy-models/releases/download/uk_core_news_sm-3.4.0/uk_core_news_sm-3.4.0.tar.gz#egg=uk_core_news_sm
 
 # conversion between hanzi and transcriptions 
 dragonmapper
@@ -25,3 +26,6 @@ spacy-ke
 
 # interactive plotting
 plotly
+
+# web parser
+beautifulsoup4
