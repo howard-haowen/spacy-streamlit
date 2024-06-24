@@ -5,3 +5,11 @@ This repo hosts a [Streamlit Web APP](https://share.streamlit.io/howard-haowen/s
 - Mandarin
 - English
 - Japanese
+
+and now also 
+
+- German
+
+I have added a noun gender analyzer, but sadly I couldnt find a reliable German dictionary api, so I had to remove this part. If you know of a good dictionary api, please let me know.
+
+The update has been pushed to the main branch.
