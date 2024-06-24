@@ -5,3 +5,4 @@ This repo hosts a [Streamlit Web APP](https://share.streamlit.io/howard-haowen/s
 - Mandarin
 - English
 - Japanese
+- French

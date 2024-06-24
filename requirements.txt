@@ -13,6 +13,7 @@ nltk
 # sapCy models
 https://github.com/explosion/spacy-models/releases/download/zh_core_web_sm-3.2.0/zh_core_web_sm-3.2.0.tar.gz#egg=zh_core_web_sm
 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.2.0/en_core_web_sm-3.2.0.tar.gz#egg=en_core_web_sm
+https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-3.2.0/fr_core_news_sm-3.2.0.tar.gz#egg=fr_core_news_sm
 
 # conversion between hanzi and transcriptions 
 dragonmapper
@@ -25,3 +26,6 @@ spacy-ke
 
 # interactive plotting
 plotly
+
+# French
+wiktionaryparser
